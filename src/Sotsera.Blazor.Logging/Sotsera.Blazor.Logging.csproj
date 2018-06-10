@@ -8,14 +8,14 @@
     <LangVersion>7.3</LangVersion>
     <AssemblyName>Sotsera.Blazor.Logging</AssemblyName>
     <RootNamespace>Sotsera.Blazor.Logging</RootNamespace>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Alessandro Ghidini</Authors>
     <Company></Company>
     <Description>Blazor interop for brower's console apis</Description>
     <Copyright>Alessandro Ghidini</Copyright>
-    <PackageProjectUrl>https://github.com/ghidello/Blazor.Logging</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/ghidello/Blazor.Logging.git</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/ghidello/Blazor.Logging/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ghidello/Sotsera.Blazor.Logging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ghidello/Sotsera.Blazor.Logging.git</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/ghidello/Sotsera.Blazor.Logging/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>blazor logger console interop</PackageTags>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
