@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B72B1DA5-2F2F-4B11-982A-4CDB0BF34CB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sotsera.Blazor.Logging", "src\Sotsera.Blazor.Logging\Sotsera.Blazor.Logging.csproj", "{543D73B9-5AC3-4BDD-8B6E-BF231813B44A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "src\Sample\Sample.csproj", "{D28EF0DC-C5B7-4A2A-AB7E-886B2477EF81}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{543D73B9-5AC3-4BDD-8B6E-BF231813B44A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543D73B9-5AC3-4BDD-8B6E-BF231813B44A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543D73B9-5AC3-4BDD-8B6E-BF231813B44A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543D73B9-5AC3-4BDD-8B6E-BF231813B44A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28EF0DC-C5B7-4A2A-AB7E-886B2477EF81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28EF0DC-C5B7-4A2A-AB7E-886B2477EF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28EF0DC-C5B7-4A2A-AB7E-886B2477EF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28EF0DC-C5B7-4A2A-AB7E-886B2477EF81}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{543D73B9-5AC3-4BDD-8B6E-BF231813B44A} = {B72B1DA5-2F2F-4B11-982A-4CDB0BF34CB3}
+		{D28EF0DC-C5B7-4A2A-AB7E-886B2477EF81} = {B72B1DA5-2F2F-4B11-982A-4CDB0BF34CB3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43556E30-4CA1-4D45-A83D-7903A9EBE9A3}
+	EndGlobalSection
+EndGlobal

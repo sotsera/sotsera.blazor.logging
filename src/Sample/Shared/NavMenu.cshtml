@@ -1,0 +1,22 @@
+﻿@using Microsoft.Extensions.Logging
+@using Sotsera.Blazor.Logging
+
+@inject ILogLevelManager manager
+
+<div class="top-row pl-4 navbar navbar-dark">
+  <a class="navbar-brand" href="">Sotsera Blazor Logging</a>
+</div>
+
+<ul class="nav flex-column">
+  <li class="nav-item px-3">
+    <div class="form-group">
+      <label for="logLevel">Log level</label>
+      <select id="logLevel" class="form-control-sm" bind="manager.CurrentLevelName">
+        @foreach (var level in manager.ValidLogLevels)
+        {
+          <option value=@level>@level</option>
+        }
+      </select>
+    </div>
+  </li>
+</ul>
