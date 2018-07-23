@@ -32,7 +32,7 @@ namespace Sotsera.Blazor.Logging.Logger
 
             if (exception != null) logMessage += $" - {exception.Message}";
 
-            JSRuntime.Current.InvokeAsync<bool>("sotsera.blazor.log", Enum.GetName(typeof(LogLevel), logLevel), logMessage);
+            ((IJSInProcessRuntime)JSRuntime.Current).Invoke<bool>("sotsera.blazor.log", Enum.GetName(typeof(LogLevel), logLevel), logMessage);
         }
     }
 }
