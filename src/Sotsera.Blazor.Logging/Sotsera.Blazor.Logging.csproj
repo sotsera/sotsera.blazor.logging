@@ -11,7 +11,7 @@
     <LangVersion>7.3</LangVersion>
     <AssemblyName>Sotsera.Blazor.Logging</AssemblyName>
     <RootNamespace>Sotsera.Blazor.Logging</RootNamespace>
-    <Version>0.1.1</Version>
+    <Version>0.2.0-preview1</Version>
     <Authors>Alessandro Ghidini</Authors>
     <Company></Company>
     <Description>Blazor interop for the browser's console APIs tied with a custom configuration source to allow the minimum LogLevel to be changed at runtime</Description>
