@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.AspNetCore.Blazor.Browser.Interop;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions.Internal;
+using Microsoft.JSInterop;
 
 namespace Sotsera.Blazor.Logging.Logger
 {
@@ -32,7 +32,7 @@ namespace Sotsera.Blazor.Logging.Logger
 
             if (exception != null) logMessage += $" - {exception.Message}";
 
-            RegisteredFunction.Invoke<bool>("sotsera.blazor.log", Enum.GetName(typeof(LogLevel), logLevel), logMessage);
+            JSRuntime.Current.InvokeAsync<bool>("sotsera.blazor.log", Enum.GetName(typeof(LogLevel), logLevel), logMessage);
         }
     }
 }

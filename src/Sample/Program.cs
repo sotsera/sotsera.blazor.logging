@@ -14,7 +14,7 @@ namespace Sample
             {
                 services.AddBlazorLogger(() =>
                 {
-                    return new BrowserUriHelper().GetBaseUri().StartsWith("http://localhost")
+                    return BrowserUriHelper.Instance.GetBaseUri().StartsWith("http://localhost")
                         ? LogLevel.Debug
                         : LogLevel.Warning;
                 });

@@ -14,11 +14,13 @@
     console.Warning = browserConsole.warn || console.log;
     console.Error = browserConsole.error || console.log;
     console.Critical = browserConsole.error || console.log;
-    
-    blazor.registerFunction("sotsera.blazor.log", function (level, message) {
+
+    if (!window.sotsera) window.sotsera = {};
+    if (!window.sotsera.blazor) window.sotsera.blazor = {};
+    window.sotsera.blazor.log = function (level, message) {
         console[level](message);
         return true;
-    });
+    }
 
 })(console || {}, Blazor);
 

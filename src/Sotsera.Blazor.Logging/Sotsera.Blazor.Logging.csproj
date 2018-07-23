@@ -5,18 +5,21 @@
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+    <RestoreAdditionalProjectSources>
+      https://dotnet.myget.org/f/blazor-dev/api/v3/index.json;
+    </RestoreAdditionalProjectSources>
     <LangVersion>7.3</LangVersion>
     <AssemblyName>Sotsera.Blazor.Logging</AssemblyName>
     <RootNamespace>Sotsera.Blazor.Logging</RootNamespace>
     <Version>0.1.1</Version>
     <Authors>Alessandro Ghidini</Authors>
     <Company></Company>
-    <Description>Blazor interop for brower's console apis</Description>
+    <Description>Blazor interop for the browser's console APIs tied with a custom configuration source to allow the minimum LogLevel to be changed at runtime</Description>
     <Copyright>Alessandro Ghidini</Copyright>
     <PackageProjectUrl>https://github.com/ghidello/Sotsera.Blazor.Logging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ghidello/Sotsera.Blazor.Logging.git</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/ghidello/Sotsera.Blazor.Logging/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageTags>blazor logger console interop</PackageTags>
+    <PackageTags>blazor logger logging blazor.logging console interop</PackageTags>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
@@ -32,8 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.5.0-preview1-10356" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.5.0-preview1-10356" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.1.0" />
   </ItemGroup>
 

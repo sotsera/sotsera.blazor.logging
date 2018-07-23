@@ -1,6 +1,6 @@
 # Sotsera.Blazor.Logging
 
-Blazor interop for the brower's console apis.
+Blazor interop for the browser's console APIs.
 
 It is a very simple ILogger implementation tied with a custom configuration source to allow the minimum LogLevel to be changed at runtime.
 

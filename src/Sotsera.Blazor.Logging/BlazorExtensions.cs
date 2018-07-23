@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Sotsera.Blazor.Logging;
 using Sotsera.Blazor.Logging.Logger;
@@ -6,7 +7,7 @@ using Sotsera.Blazor.Logging.Logger;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class BlazorLoggingExtensions
+    public static class BlazorExtensions
     {
         public static IServiceCollection AddBlazorLogger(this IServiceCollection services, Func<LogLevel> configure)
         {
@@ -22,8 +23,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddLogging(builder =>
             {
                 builder.AddConfiguration(manager.ConfigurationSection());
-                builder.Services.AddSingleton<ILoggerProvider>(new LoggerProvider());
-                builder.Services.AddSingleton<ILogLevelManager>(manager);
+                builder.Services.TryAddSingleton<ILoggerProvider>(new LoggerProvider());
+                builder.Services.TryAddSingleton<ILogLevelManager>(manager);
             });
 
             return services;
