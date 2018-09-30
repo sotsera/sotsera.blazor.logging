@@ -9,9 +9,10 @@
       https://dotnet.myget.org/f/blazor-dev/api/v3/index.json;
     </RestoreAdditionalProjectSources>
     <LangVersion>7.3</LangVersion>
+    <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
     <AssemblyName>Sotsera.Blazor.Logging</AssemblyName>
     <RootNamespace>Sotsera.Blazor.Logging</RootNamespace>
-    <Version>0.2.0-preview1</Version>
+    <Version>0.6.0-preview1</Version>
     <Authors>Alessandro Ghidini</Authors>
     <Company></Company>
     <Description>Blazor interop for the browser's console APIs tied with a custom configuration source to allow the minimum LogLevel to be changed at runtime</Description>
@@ -35,9 +36,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.5.0-preview1-10356" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.5.0-preview1-10356" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.6.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.6.0-preview1-final" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

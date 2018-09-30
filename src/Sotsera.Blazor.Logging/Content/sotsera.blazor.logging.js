@@ -19,7 +19,7 @@
     if (!window.sotsera.blazor) window.sotsera.blazor = {};
     window.sotsera.blazor.log = function (level, message) {
         console[level](message);
-        return true;
+        return true; //TODO: remove the return value --> https://github.com/aspnet/Blazor/issues/385
     }
 
 })(console || {}, Blazor);
