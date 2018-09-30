@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "lib": [ "es2015", "dom", "es2015.promise" ],
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "outDir": "./Content",
+    "removeComments": true,
+    "sourceMap": false,
+    "strict": true,
+    "target": "es5"
+  },
+  "files": [
+    "Interop/sotsera.blazor.logging.ts"
+  ],
+  "exclude": ["Content"]
+}
