@@ -1,7 +1,6 @@
-﻿namespace Sotsera.Blazor { 
-    export module Logging {
+﻿namespace sotsera.blazor { 
+    export module logging {
         const consoleLogger = !console ? (() => {}) : !console.log ? (() => {}) : console.log;
-
         /*
          * Chrome hides these trace and debug levels by default and allowing
          * them many other messages appear on the console
