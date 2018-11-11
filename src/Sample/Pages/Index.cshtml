@@ -16,15 +16,40 @@
     logger.LogError("Error!!");
     logger.LogError(new Exception("With Exception!!"), "Error!!");
     logger.LogCritical("Critical!!");
+
+    using (logger.BeginScope("This is my Debug test scope"))
+    {
+      logger.LogDebug("Debug!!");
+    }
+
+    using (logger.BeginScope("This is my Debug test scope with exception"))
+    {
+      logger.LogDebug("Debug!!");
+      logger.LogError(new Exception("With Exception!!"), "Error!!");
+    }
   }
 
   private void LogDebug()
   {
-    logger.LogDebug("LogDebug button pressed!");
+    using (logger.BeginScope("This is the Outer Debug Scope"))
+    {
+      logger.LogDebug("LogDebug button pressed!");
+      using (logger.BeginScope("This is the Inner Debug Scope"))
+      {
+        logger.LogDebug("LogDebug button pressed!");
+      }
+    }
   }
 
   private void LogWarning()
   {
-    logger.LogWarning("LogWarning button pressed!");
+    using (logger.BeginScope("This is the Outer Warning Scope"))
+    {
+      logger.LogDebug("LogWarning button pressed!");
+      using (logger.BeginScope("This is the Inner Warning Scope"))
+      {
+        logger.LogWarning("LogWarning button pressed!");
+      }
+    }
   }
 }

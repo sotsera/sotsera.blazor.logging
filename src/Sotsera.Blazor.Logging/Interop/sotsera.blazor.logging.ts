@@ -11,10 +11,16 @@
             Information: console.info || consoleLogger,
             Warning: console.warn || consoleLogger,
             Error: console.error || consoleLogger,
-            Critical: console.error || consoleLogger
+            Critical: console.error || consoleLogger,
+            Group: console.group || consoleLogger,
+            GroupEnd: console.groupEnd || consoleLogger
         }
 
         export function log(level: string, message: string): void {
+            if (level === "GroupEnd") {
+                logger[level]();
+                return;
+            }
             logger[level](message);
         }
     }
