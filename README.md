@@ -4,6 +4,11 @@ Blazor interop for the browser's console APIs.
 
 It is a very simple ILogger implementation tied with a custom configuration source to allow the minimum LogLevel to be changed at runtime.
 
+## Changes
+
+- version 0.6.1
+  - ability to map ILogger scopes to console's groups
+
 ## Configuration
 
 The *AddBlazorLogger* extension method allows the logger to be added to the dependency injection system specifying the minimum log level to be shown in the browser console.
