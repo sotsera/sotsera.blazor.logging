@@ -6,6 +6,10 @@ It is a very simple ILogger implementation tied with a custom configuration sour
 
 ## Changes
 
+- version 0.7.0
+  - updated to Blazor v0.7.0
+  - ILogLevelManager renamed to ILogManager **(breaking change)**
+    - ILogManager exposes an event with the logged message (useful on mobile when the console is not available)
 - version 0.6.1
   - ability to map ILogger scopes to console's groups
 
@@ -51,7 +55,7 @@ public class Program
 The following snippet shows how to control the log level with a select box:
 
 ```c#
-@inject ILogLevelManager manager
+@inject ILogManager manager
 
 <select bind="manager.CurrentLevelName">
     @foreach (var level in manager.ValidLogLevels)
