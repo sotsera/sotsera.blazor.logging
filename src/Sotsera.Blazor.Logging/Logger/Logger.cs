@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions.Internal;
 using Microsoft.JSInterop;
 
 namespace Sotsera.Blazor.Logging.Logger
@@ -10,13 +9,15 @@ namespace Sotsera.Blazor.Logging.Logger
     {
         private readonly AsyncLocal<GroupScope> _currentScope = new AsyncLocal<GroupScope>();
         public string Name { get; }
+        public LogManager LogManager { get; }
 
         public bool IsEnabled(LogLevel logLevel) => logLevel != LogLevel.None;
 
-        public Logger(string name)
+        public Logger(string name, LogManager logManager)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             Name = name;
+            LogManager = logManager ?? throw new ArgumentNullException(nameof(logManager));
         }
 
         public IDisposable BeginScope<TState>(TState state)
@@ -44,13 +45,15 @@ namespace Sotsera.Blazor.Logging.Logger
             Log(Enum.GetName(typeof(LogLevel), logLevel), logMessage);
         }
 
-        internal static void Log(string logLevel, string logMessage)
+        internal void Log(string logLevel, string logMessage)
         {
+            LogManager.RaiseLogEvent(logLevel, logMessage);
             JSRuntime.Current.InvokeAsync<object>("sotsera.blazor.logging.log", logLevel, logMessage);
         }
 
-        internal static void LogGroupEnd()
+        internal void LogGroupEnd(string label)
         {
+            LogManager.RaiseLogEvent("GroupEnd", label);
             JSRuntime.Current.InvokeAsync<object>("sotsera.blazor.logging.log", "GroupEnd");
         }
     }

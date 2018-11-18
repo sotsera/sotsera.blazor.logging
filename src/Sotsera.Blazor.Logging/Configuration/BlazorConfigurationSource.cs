@@ -5,18 +5,18 @@ namespace Sotsera.Blazor.Logging.Configuration
 {
     internal class BlazorConfigurationSource : IConfigurationSource
     {
-        private LogLevelManager LogLevelManager { get; set; }
+        private LogManager LogManager { get; set; }
 
-        public BlazorConfigurationSource(LogLevelManager logLevelManager)
+        public BlazorConfigurationSource(LogManager logManager)
         {
-            this.LogLevelManager = logLevelManager;
+            this.LogManager = logManager;
         }
 
         public Microsoft.Extensions.Configuration.IConfigurationProvider Build(IConfigurationBuilder builder)
         {
             var provider = new BlazorConfigurationProvider();
 
-            LogLevelManager.Providers.Add(provider);
+            LogManager.Providers.Add(provider);
 
             return provider;
         }

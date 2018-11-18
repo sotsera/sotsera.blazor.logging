@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Sotsera.Blazor.Logging.Configuration;
 
 namespace Sotsera.Blazor.Logging.Logger
 {
-    internal class LogLevelManager : ILogLevelManager
+    internal class LogManager : ILogManager
     {
         public const string Path = "Blazor:Logging";
         public const string LogLevelPath = "Blazor:Logging:LogLevel:Default";
         private LogLevel _currentLogLevel;
 
         internal IList<BlazorConfigurationProvider> Providers { get; }
+        public event Action<string, string> OnLog;
         public string[] ValidLogLevels => Enum.GetNames(typeof(LogLevel));
+        public string Version { get; }
 
-        public LogLevelManager(LogLevel initialLevel)
+        public LogManager(LogLevel initialLevel)
         {
             _currentLogLevel = initialLevel;
             Providers = new List<BlazorConfigurationProvider>();
+            Version = InspectAssemblyVersion();
         }
 
         public LogLevel CurrentLevel
@@ -52,5 +56,15 @@ namespace Sotsera.Blazor.Logging.Logger
                 .GetSection(Path);
         }
 
+        public void RaiseLogEvent(string level, string message)
+        {
+            OnLog?.Invoke(level, message);
+        }
+
+        private string InspectAssemblyVersion()
+        {
+            return GetType().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                .InformationalVersion;
+        }
     }
 }

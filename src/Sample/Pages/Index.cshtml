@@ -1,14 +1,27 @@
 ﻿@page "/"
+@using Sotsera.Blazor.Logging
 @inject ILogger<Index> logger
+@inject ILogManager manager
 
-<h3>Console logger: open the browser console to see the logs</h3>
+<h3>Console logger: open the browser console to see the logs and the sample groupings</h3>
 
-<button class="btn btn-primary" onclick=@LogDebug>Log Debug</button>
-<button class="btn btn-primary" onclick=@LogWarning>Log Warning</button>
+<div class="form-group">
+  <button class="btn btn-primary" onclick=@LogDebug>Log Debug</button>
+  <button class="btn btn-primary" onclick=@LogWarning>Log Warning</button>
+</div>
+<div class="form-group">
+  <label for="logMessages">Log messages:</label>
+  <pre><textarea class="form-control" rows="5" id="logMessages">@LogMessages</textarea></pre>
+</div>
 
 @functions {
+  private int LogId { get; set; }
+  protected string LogMessages { get; private set; }
+
   protected override void OnInit()
   {
+    manager.OnLog += (level, message) => LogMessages += $"({LogId++}) {level}: {message}{Environment.NewLine}";
+
     logger.LogTrace("Trace!!");
     logger.LogDebug("Debug!!");
     logger.LogInformation("Information!!");

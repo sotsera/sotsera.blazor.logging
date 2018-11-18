@@ -1,6 +1,4 @@
 ﻿using System;
-using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 
 namespace Sotsera.Blazor.Logging.Logger
 {
@@ -34,7 +32,7 @@ namespace Sotsera.Blazor.Logging.Logger
         public void Dispose()
         {
             if (Ignored || !HasBeenShown) return;
-            Logger.LogGroupEnd();
+            Logger.LogGroupEnd(Label);
         }
     }
 }
