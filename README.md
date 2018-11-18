@@ -6,12 +6,14 @@ It is a very simple ILogger implementation tied with a custom configuration sour
 
 ## Changes
 
+- version 0.7.1
+  - workaround for the group scopes chain across async requests. **NOT** suitable for parallel job executions
 - version 0.7.0
   - updated to Blazor v0.7.0
   - ILogLevelManager renamed to ILogManager **(breaking change)**
     - ILogManager exposes an event with the logged message (useful on mobile when the console is not available)
 - version 0.6.1
-  - ability to map ILogger scopes to console's groups
+  - ability to map ILogger scopes to console's groups: a log message will be added to the last group scope created regardles of the thread context. **MUST** investigate a solution for handling parallel jobs
 
 ## Configuration
 
