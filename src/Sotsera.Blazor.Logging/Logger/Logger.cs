@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
@@ -7,7 +6,8 @@ namespace Sotsera.Blazor.Logging.Logger
 {
     internal class Logger : ILogger
     {
-        private readonly AsyncLocal<GroupScope> _currentScope = new AsyncLocal<GroupScope>();
+        // Go back to understand how to better handle the scope context for parallel work
+        //private readonly AsyncLocal<GroupScope> _currentScope = new AsyncLocal<GroupScope>();
         public string Name { get; }
         public LogManager LogManager { get; }
 
@@ -22,8 +22,8 @@ namespace Sotsera.Blazor.Logging.Logger
 
         public IDisposable BeginScope<TState>(TState state)
         {
-            var currentScope = _currentScope.Value;
-            return _currentScope.Value = new GroupScope(this, state?.ToString(), currentScope);
+            var currentScope = LogManager.CurrentScope;
+            return LogManager.CurrentScope = new GroupScope(this, state?.ToString(), currentScope);
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
@@ -40,7 +40,7 @@ namespace Sotsera.Blazor.Logging.Logger
 
             if (exception != null) logMessage += $" - {exception.Message}";
 
-            _currentScope.Value?.EnsureHasBeenShown();
+            LogManager.CurrentScope?.EnsureHasBeenShown();
 
             Log(Enum.GetName(typeof(LogLevel), logLevel), logMessage);
         }
@@ -54,6 +54,7 @@ namespace Sotsera.Blazor.Logging.Logger
         internal void LogGroupEnd(string label)
         {
             LogManager.RaiseLogEvent("GroupEnd", label);
+            LogManager.CurrentScope = LogManager.CurrentScope?.Parent;
             JSRuntime.Current.InvokeAsync<object>("sotsera.blazor.logging.log", "GroupEnd");
         }
     }

@@ -9,7 +9,7 @@ namespace Sotsera.Blazor.Logging.Logger
 
         private Logger Logger { get; }
         private string Label { get; }
-        private GroupScope Parent { get; set; }
+        public GroupScope Parent { get; }
 
         public GroupScope(Logger logger, string label, GroupScope parent)
         {

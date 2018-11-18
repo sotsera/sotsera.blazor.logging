@@ -18,6 +18,8 @@ namespace Sotsera.Blazor.Logging.Logger
         public string[] ValidLogLevels => Enum.GetNames(typeof(LogLevel));
         public string Version { get; }
 
+        public GroupScope CurrentScope { get; set; }
+
         public LogManager(LogLevel initialLevel)
         {
             _currentLogLevel = initialLevel;

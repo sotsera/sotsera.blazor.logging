@@ -2,6 +2,7 @@
 @using Sotsera.Blazor.Logging
 @inject ILogger<Index> logger
 @inject ILogManager manager
+@inject ILoggerFactory factory
 
 <h3>Console logger: open the browser console to see the logs and the sample groupings</h3>
 
@@ -15,54 +16,56 @@
 </div>
 
 @functions {
-  private int LogId { get; set; }
-  protected string LogMessages { get; private set; }
+    private int LogId { get; set; }
+    protected string LogMessages { get; private set; }
 
-  protected override void OnInit()
-  {
-    manager.OnLog += (level, message) => LogMessages += $"({LogId++}) {level}: {message}{Environment.NewLine}";
-
-    logger.LogTrace("Trace!!");
-    logger.LogDebug("Debug!!");
-    logger.LogInformation("Information!!");
-    logger.LogWarning("Warning!!");
-    logger.LogError("Error!!");
-    logger.LogError(new Exception("With Exception!!"), "Error!!");
-    logger.LogCritical("Critical!!");
-
-    using (logger.BeginScope("This is my Debug test scope"))
+    protected override void OnInit()
     {
-      logger.LogDebug("Debug!!");
-    }
+      manager.OnLog += (level, message) => LogMessages += $"({LogId++}) {level}: {message}{Environment.NewLine}";
 
-    using (logger.BeginScope("This is my Debug test scope with exception"))
-    {
+      logger.LogTrace("Trace!!");
       logger.LogDebug("Debug!!");
+      logger.LogInformation("Information!!");
+      logger.LogWarning("Warning!!");
+      logger.LogError("Error!!");
       logger.LogError(new Exception("With Exception!!"), "Error!!");
-    }
-  }
+      logger.LogCritical("Critical!!");
 
-  private void LogDebug()
-  {
-    using (logger.BeginScope("This is the Outer Debug Scope"))
+      using (logger.BeginScope("This is my Debug test scope"))
+      {
+        logger.LogDebug("Debug!!");
+      }
+
+      using (logger.BeginScope("This is my Debug test scope with exception"))
+      {
+        logger.LogDebug("Debug!!");
+        logger.LogError(new Exception("With Exception!!"), "Error!!");
+      }
+    }
+
+    private void LogDebug()
     {
-      logger.LogDebug("LogDebug button pressed!");
-      using (logger.BeginScope("This is the Inner Debug Scope"))
+      using (logger.BeginScope("This is the Outer Debug Scope"))
       {
         logger.LogDebug("LogDebug button pressed!");
+        using (logger.BeginScope("This is the Inner Debug Scope"))
+        {
+          logger.LogDebug("LogDebug button pressed!");
+        }
       }
     }
-  }
 
-  private void LogWarning()
-  {
-    using (logger.BeginScope("This is the Outer Warning Scope"))
+    private void LogWarning()
     {
-      logger.LogDebug("LogWarning button pressed!");
-      using (logger.BeginScope("This is the Inner Warning Scope"))
+      var logger1 = factory.CreateLogger<Index>();
+      var logger2 = factory.CreateLogger<Index>();
+
+      using (logger1.BeginScope("This is the Outer Warning Scope"))
       {
-        logger.LogWarning("LogWarning button pressed!");
+        using (logger2.BeginScope("This is the Inner Warning Scope"))
+        {
+          logger.LogWarning("LogWarning button pressed!");
+        }
       }
     }
-  }
 }
