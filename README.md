@@ -6,6 +6,8 @@ It is a very simple ILogger implementation tied with a custom configuration sour
 
 ## Changes
 
+- version 0.7.2
+  - fix for the parent scope management. **NOT** suitable for parallel job executions
 - version 0.7.1
   - workaround for the group scopes chain across async requests. **NOT** suitable for parallel job executions
 - version 0.7.0
