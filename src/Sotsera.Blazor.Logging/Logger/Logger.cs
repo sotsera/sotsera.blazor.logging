@@ -6,7 +6,7 @@ namespace Sotsera.Blazor.Logging.Logger
 {
     internal class Logger : ILogger
     {
-        // Go back to understand how to better handle the scope context for parallel work
+        // Find out a better way for handling the scope context for parallel work
         //private readonly AsyncLocal<GroupScope> _currentScope = new AsyncLocal<GroupScope>();
         public string Name { get; }
         public LogManager LogManager { get; }
@@ -23,7 +23,7 @@ namespace Sotsera.Blazor.Logging.Logger
         public IDisposable BeginScope<TState>(TState state)
         {
             var currentScope = LogManager.CurrentScope;
-            return LogManager.CurrentScope = new GroupScope(this, state?.ToString(), currentScope);
+            return LogManager.CurrentScope = new GroupScope(this, LogManager, state?.ToString(), currentScope);
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)

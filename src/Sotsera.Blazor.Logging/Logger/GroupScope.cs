@@ -8,12 +8,14 @@ namespace Sotsera.Blazor.Logging.Logger
         private bool HasBeenShown { get; set; }
 
         private Logger Logger { get; }
+        public LogManager LogManager { get; }
         private string Label { get; }
         public GroupScope Parent { get; }
 
-        public GroupScope(Logger logger, string label, GroupScope parent)
+        public GroupScope(Logger logger, LogManager logManager, string label, GroupScope parent)
         {
             Logger = logger;
+            LogManager = logManager;
             Label = label;
             Parent = parent;
             Ignored = string.IsNullOrWhiteSpace(label);
@@ -31,6 +33,7 @@ namespace Sotsera.Blazor.Logging.Logger
 
         public void Dispose()
         {
+            LogManager.CurrentScope = Parent;
             if (Ignored || !HasBeenShown) return;
             Logger.LogGroupEnd(Label);
         }
