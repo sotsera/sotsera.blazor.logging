@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Services;
-using Microsoft.AspNetCore.Blazor.Builder;
+﻿using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sotsera.Blazor.Logging;
 
 namespace Sample
 {
@@ -15,16 +13,17 @@ namespace Sample
             services.AddBlazorLogger(() => url.StartsWith("http://localhost") ? LogLevel.Trace : LogLevel.Warning);
         }
 
-        public void Configure(IBlazorApplicationBuilder app)
+        public void Configure(IComponentsApplicationBuilder app)
         {
             app.AddComponent<App>("app");
         }
 
         private string GetUrl()
         {
-            var serviceProvider = new BrowserServiceProvider(configure => { });
+            //var serviceProvider = new BrowserServiceProvider(configure => { });
 
-            return BrowserUriHelper.Instance.GetBaseUri();
+            //return BrowserUriHelper.Instance.GetBaseUri();
+            return "http://localhost";
         }
     }
 }
